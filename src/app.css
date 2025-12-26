@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "@xterm/xterm/css/xterm.css";
+
+/* Theme CSS Custom Properties - Easy to add light theme later */
+:root {
+  /* Dark theme (default) */
+  --color-bg-primary: #0f0f0f;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #242424;
+  --color-bg-hover: #2a2a2a;
+  --color-bg-active: #333333;
+
+  --color-border: #333333;
+  --color-border-subtle: #2a2a2a;
+
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
+
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --color-accent-subtle: rgba(59, 130, 246, 0.1);
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* Sidebar */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 60px;
+
+  /* Terminal */
+  --terminal-bg: #0d0d0d;
+  --terminal-fg: #d4d4d4;
+}
+
+/* Future light theme support
+[data-theme="light"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
+  --color-bg-tertiary: #e5e5e5;
+  ...
+}
+*/
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent text selection during drag operations */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Button reset */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Select/dropdown styling */
+select {
+  color-scheme: dark;
+}
+
+select option {
+  background-color: #242424;
+  color: #f5f5f5;
+  padding: 8px;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* Link styles */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Utility classes for theme colors */
+.bg-primary { background-color: var(--color-bg-primary); }
+.bg-secondary { background-color: var(--color-bg-secondary); }
+.bg-tertiary { background-color: var(--color-bg-tertiary); }
+
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+.border-default { border-color: var(--color-border); }
+.border-subtle { border-color: var(--color-border-subtle); }
+
+/* Status colors */
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+.text-accent { color: var(--color-accent); }
+
+/* Connection status indicators */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.online { background-color: var(--color-success); }
+.status-dot.offline { background-color: var(--color-text-muted); }
+.status-dot.connecting { background-color: var(--color-warning); }
+.status-dot.error { background-color: var(--color-error); }
+
+/* Transitions */
+.transition-colors {
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+/* xterm.js container styling will be added in terminal component */
